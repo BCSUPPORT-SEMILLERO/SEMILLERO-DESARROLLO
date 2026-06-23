@@ -5,40 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Panadería artesanal con productos frescos todos los días"
+      content="Panadería artesanal con productos frescos todos los días - BC SUPPORT Semillero"
     />
     <title>Panadería Doña Pepa BCS</title>
     <link rel="stylesheet" href="styles.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
-   <header>
-
-    <div class="logo">
+    
+    <!-- HEADER CON ACCESIBILIDAD PARA MENÚ MÓVIL -->
+    <header>
+      <div class="logo">
         Panadería Doña Pepa BCS
-    </div>
+      </div>
 
-    <button id="menu-btn" class="menu-btn">
-        Menú
-    </button>
+      <!-- Ajustado para usar .menu-toggle del CSS y atributos ARIA de accesibilidad -->
+      <button id="menu-btn" class="menu-toggle" aria-expanded="false" aria-controls="menu" aria-label="Abrir menú de navegación">
+        ☰
+      </button>
 
-    <nav id="menu">
+      <nav id="menu">
         <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#beneficios">Beneficios</a></li>
-            <li><a href="#cta">Promoción</a></li>
-            <li><a href="#contacto">Contacto</a></li>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#beneficios">Beneficios</a></li>
+          <li><a href="#cta">Promoción</a></li>
+          <li><a href="#contacto">Contacto</a></li>
         </ul>
-    </nav>
+      </nav>
+    </header>
 
-</header>
-
-    <main  class="container">
+    <!-- CONTENIDO PRINCIPAL SEMÁNTICO -->
+    <main class="container">
+      
+      <!-- HERO SECTION -->
       <section id="inicio" class="hero">
         <h1>Pan artesanal recién horneado todos los días</h1>
         <p>
@@ -47,6 +51,7 @@
         <a href="#contacto" class="btn">Realizar pedido</a>
       </section>
 
+      <!-- BENEFICIOS (TARJETAS COMPONENTIZADAS) -->
       <section id="beneficios">
         <h2>Beneficios</h2>
         <div class="cards">
@@ -54,10 +59,12 @@
             <h3>Ingredientes frescos</h3>
             <p>Materias primas seleccionadas cuidadosamente.</p>
           </article>
+          
           <article class="card">
             <h3>Producción diaria</h3>
             <p>Pan horneado cada mañana.</p>
           </article>
+          
           <article class="card">
             <h3>Atención personalizada</h3>
             <p>Asesoría para encontrar el producto ideal.</p>
@@ -65,32 +72,44 @@
         </div>
       </section>
 
+      <!-- SECCIÓN LLAMADO A LA ACCIÓN (CTA) -->
       <section id="cta">
         <h2>Promoción de la Semana</h2>
         <p>Obtén descuentos en combos familiares.</p>
         <a href="#contacto" class="btn">Solicitar información</a>
       </section>
 
+      <!-- FORMULARIO DE CONTACTO ACCESIBLE (RETO 5) -->
       <section id="contacto">
         <h2>Contáctanos</h2>
-        <form>
-          <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre" required />
+        <form action="#" method="POST">
+          
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" autocomplete="name" required />
+          </div>
 
-          <label for="correo">Correo electrónico</label>
-          <input type="email" id="correo" name="correo" required />
+          <div class="form-group">
+            <label for="correo">Correo electrónico</label>
+            <input type="email" id="correo" name="correo" autocomplete="email" required />
+          </div>
 
-          <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+          <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+          </div>
 
-          <button type="submit">Enviar</button>
+          <button type="submit">Enviar Mensaje</button>
         </form>
       </section>
     </main>
 
+    <!-- PIE DE PÁGINA -->
     <footer>
       <p>© 2026 Panadería BCS - Todos los derechos reservados</p>
     </footer>
+
+    <!-- SCRIPT AL FINAL PARA NO BLOQUEAR EL RENDERIZADO -->
     <script src="script.js"></script>
   </body>
 </html>

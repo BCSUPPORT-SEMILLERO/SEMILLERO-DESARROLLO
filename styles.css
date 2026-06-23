@@ -1,11 +1,50 @@
+/* ==========================================================================
+   DESIGN TOKENS (BC SUPPORT - RETO 5)
+   ========================================================================== */
 :root {
-    --primary: #C22945;
-    --secondary: #004960;
-    --light: #f5f7fa;
-    --white: #ffffff;
-    --dark: #1f2937;
+    /* Color Tokens Base */
+    --color-brand-primary: #C22945;
+    --color-brand-secondary: #004960;
+    --color-neutral-light: #f5f7fa;
+    --color-neutral-white: #ffffff;
+    --color-neutral-dark: #1f2937;
+    --color-neutral-muted: #d1d5db;
+
+    /* Semantic Design Tokens */
+    --dt-color-bg-main: var(--color-neutral-light);
+    --dt-color-bg-card: var(--color-neutral-white);
+    --dt-color-bg-header: var(--color-brand-primary);
+    --dt-color-bg-footer: var(--color-brand-primary);
+    --dt-color-bg-button-primary: var(--color-brand-secondary);
+    
+    --dt-color-text-main: var(--color-neutral-dark);
+    --dt-color-text-on-primary: var(--color-neutral-white);
+    --dt-color-text-on-primary-hover: var(--color-neutral-white);
+    --dt-color-text-title-primary: var(--color-brand-primary);
+    --dt-color-text-title-secondary: var(--color-brand-secondary);
+
+    /* Interactive / Accessibility Tokens */
+    --dt-color-focus-outline: var(--color-brand-primary);
+    --dt-color-focus-outline-alt: var(--color-neutral-white);
+    --dt-border-input-default: var(--color-neutral-muted);
+
+    /* Typography Tokens */
+    --dt-font-family: 'Poppins', sans-serif;
+    --dt-font-weight-regular: 400;
+    --dt-font-weight-medium: 500;
+    --dt-font-weight-semibold: 600;
+    --dt-font-weight-bold: 700;
+
+    /* Layout, Borders & Shadows */
+    --dt-border-radius-small: 8px;
+    --dt-border-radius-medium: 10px;
+    --dt-border-radius-large: 15px;
+    --dt-shadow-card: 0 5px 15px rgba(0, 0, 0, 0.08);
 }
 
+/* ==========================================================================
+   BASE STYLES & RESET
+   ========================================================================== */
 * {
     margin: 0;
     padding: 0;
@@ -13,28 +52,129 @@
 }
 
 body {
-    font-family: 'Poppins', sans-serif;
-    background-color: var(--light);
-    color: var(--dark);
+    font-family: var(--dt-font-family);
+    background-color: var(--dt-color-bg-main);
+    color: var(--dt-color-text-main);
     line-height: 1.6;
 }
 
-/* HEADER */
+.container {
+    max-width: 1200px;
+    margin: auto;
+}
 
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ==========================================================================
+   COMPONENTES REUTILIZABLES (ACCESIBILIDAD MEJORADA)
+   ========================================================================== */
+
+/* Botones e Interactivos */
+.btn {
+    display: inline-block;
+    background: var(--dt-color-bg-button-primary);
+    color: var(--dt-color-text-on-primary);
+    padding: 1rem 2rem;
+    border-radius: var(--dt-border-radius-medium);
+    text-decoration: none;
+    font-weight: var(--dt-font-weight-semibold);
+    transition: transform 0.3s ease, outline 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+button {
+    width: 100%;
+    margin-top: 1.5rem;
+    background: var(--dt-color-bg-button-primary);
+    color: var(--dt-color-text-on-primary);
+    border: none;
+    padding: 1rem;
+    border-radius: var(--dt-border-radius-small);
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: var(--dt-font-weight-semibold);
+    transition: opacity 0.3s ease, outline 0.2s ease;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* Indicadores de Foco Visibles (Teclado / Accesibilidad) */
+button:focus-visible,
+.btn:focus-visible,
+nav a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+    outline: 3px dashed var(--dt-color-focus-outline);
+    outline-offset: 4px;
+}
+
+/* Foco invertido para elementos sobre fondos oscuros/rojos */
+header nav a:focus-visible,
+.menu-toggle:focus-visible {
+    outline: 3px dashed var(--dt-color-focus-outline-alt);
+    outline-offset: 4px;
+}
+
+/* Campos de Formulario */
+input,
+textarea {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--dt-border-input-default);
+    border-radius: var(--dt-border-radius-small);
+    font-size: 1rem;
+    font-family: var(--dt-font-family);
+    transition: border-color 0.3s ease;
+}
+
+textarea {
+    resize: vertical;
+}
+
+/* Tarjetas (Cards) */
+.card {
+    background: var(--dt-color-bg-card);
+    flex: 1;
+    padding: 2rem;
+    border-radius: var(--dt-border-radius-large);
+    text-align: center;
+    box-shadow: var(--dt-shadow-card);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+/* ==========================================================================
+   SECCIONES Y ESTRUCTURA DE LA PÁGINA
+   ========================================================================== */
+
+/* Header */
 header {
-    background: var(--primary);
-    color: white;
+    background: var(--dt-color-bg-header);
+    color: var(--dt-color-text-on-primary);
     padding: 1rem 3rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: sticky;
     top: 0;
+    z-index: 1000;
 }
 
 .logo {
     font-size: 1.5rem;
-    font-weight: 700;
+    font-weight: var(--dt-font-weight-bold);
 }
 
 nav ul {
@@ -44,27 +184,29 @@ nav ul {
 }
 
 nav a {
-    color: white;
+    color: var(--dt-color-text-on-primary);
     text-decoration: none;
-    font-weight: 500;
+    font-weight: var(--dt-font-weight-medium);
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
 }
 
 nav a:hover {
-    color: #d1d5db;
+    color: var(--dt-color-text-on-primary-hover);
+    text-decoration: underline; /* Mejora la accesibilidad cognitiva al hover */
 }
 
-/* HERO */
-
+/* Hero Section */
 .hero {
     text-align: center;
     padding: 6rem 2rem;
-    background: white;
+    background: var(--color-neutral-white);
 }
 
 .hero h1 {
     font-size: 3rem;
     margin-bottom: 1rem;
-    color: var(--primary);
+    color: var(--dt-color-text-title-primary);
 }
 
 .hero p {
@@ -73,23 +215,7 @@ nav a:hover {
     font-size: 1.2rem;
 }
 
-.btn {
-    display: inline-block;
-    background: var(--secondary);
-    color: white;
-    padding: 1rem 2rem;
-    border-radius: 10px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: .3s;
-}
-
-.btn:hover {
-    transform: translateY(-2px);
-}
-
-/* SECCIONES */
-
+/* Secciones Generales */
 section {
     padding: 5rem 2rem;
 }
@@ -97,12 +223,11 @@ section {
 section h2 {
     text-align: center;
     margin-bottom: 3rem;
-    color: var(--primary);
+    color: var(--dt-color-text-title-primary);
     font-size: 2rem;
 }
 
-/* BENEFICIOS */
-
+/* Beneficios (Cards Container) */
 .cards {
     max-width: 1200px;
     margin: auto;
@@ -110,43 +235,27 @@ section h2 {
     gap: 2rem;
 }
 
-.card {
-    background: white;
-    flex: 1;
-    padding: 2rem;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
-    transition: .3s;
-}
-
-.card:hover {
-    transform: translateY(-5px);
-}
-
 .card h3 {
-    color: var(--secondary);
+    color: var(--dt-color-text-title-secondary);
     margin-bottom: 1rem;
 }
 
-/* CTA */
-
+/* Llamado a la Acción (CTA) */
 #cta {
-    background: var(--primary);
-    color: white;
+    background: var(--dt-color-bg-header);
+    color: var(--dt-color-text-on-primary);
     text-align: center;
 }
 
 #cta h2 {
-    color: white;
+    color: var(--dt-color-text-on-primary);
 }
 
 #cta p {
     margin-bottom: 2rem;
 }
 
-/* CONTACTO */
-
+/* Contacto y Formulario */
 #contacto {
     display: flex;
     flex-direction: column;
@@ -156,211 +265,153 @@ section h2 {
 form {
     width: 100%;
     max-width: 700px;
-    background: white;
+    background: var(--dt-color-bg-card);
     padding: 2.5rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,.08);
+    border-radius: var(--dt-border-radius-large);
+    box-shadow: var(--dt-shadow-card);
 }
 
 label {
     display: block;
     margin-top: 1rem;
-    margin-bottom: .4rem;
-    font-weight: 600;
+    margin-bottom: 0.4rem;
+    font-weight: var(--dt-font-weight-semibold);
 }
 
-input,
-textarea {
-    width: 100%;
-    padding: 1rem;
-    border: 1px solid #d1d5db;
-    border-radius: 8px;
-    font-size: 1rem;
-}
-
-textarea {
-    resize: vertical;
-}
-
-button {
-    width: 100%;
-    margin-top: 1.5rem;
-    background: var(--secondary);
-    color: white;
-    border: none;
-    padding: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-button:hover {
-    opacity: .9;
-}
-
-button:focus,
-.btn:focus {
-    outline: 3px solid var(--primary);
-}
-
-/* FOOTER */
-
+/* Footer */
 footer {
-    background: var(--primary);
-    color: white;
+    background: var(--dt-color-bg-footer);
+    color: var(--dt-color-text-on-primary);
     text-align: center;
     padding: 1.5rem;
 }
 
-/* ========================= */
-/* MOBILE FIRST */
-/* ========================= */
-
-.container{
-    max-width:1200px;
-    margin:auto;
+/* Componentes Adicionales de Navegación Móvil */
+.menu-toggle {
+    display: block;
+    background: none;
+    border: none;
+    color: var(--dt-color-text-on-primary);
+    font-size: 2rem;
+    cursor: pointer;
 }
 
-/* Imágenes fluidas */
-
-img{
-    max-width:100%;
-    height:auto;
-    display:block;
+.menu-btn {
+    background: var(--color-brand-secondary);
+    color: var(--dt-color-text-on-primary);
+    border: none;
+    padding: 10px 20px;
+    border-radius: var(--dt-border-radius-small);
+    cursor: pointer;
+    font-size: 1rem;
 }
 
-/* Header móvil */
-
-header{
-    flex-direction:column;
-    gap:1rem;
-    text-align:center;
+#menu {
+    display: none;
+    width: 100%;
 }
 
-nav ul{
-    flex-direction:column;
-    gap:1rem;
+#menu.active {
+    display: block;
 }
 
-/* Tarjetas móvil */
-
-.cards{
-    display:grid;
-    grid-template-columns:1fr;
+#menu ul {
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    gap: 1rem;
+    text-align: center;
+    padding: 1rem 0;
 }
 
-/* Hero móvil */
+/* ==========================================================================
+   RESPONSIVE DESIGN (MOBILE FIRST DE BASE)
+   ========================================================================== */
 
-.hero h1{
-    font-size:2rem;
+/* Vista Móvil por defecto */
+header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
 }
 
-.hero p{
-    font-size:1rem;
+nav ul {
+    flex-direction: column;
+    gap: 1rem;
 }
 
-/* ========================= */
-/* TABLET */
-/* ========================= */
+.cards {
+    display: grid;
+    grid-template-columns: 1fr;
+}
 
-@media (min-width:768px){
+.hero h1 {
+    font-size: 2rem;
+}
 
-    header{
-        flex-direction:row;
+.hero p {
+    font-size: 1rem;
+}
+
+/* Tablet Media Query (min-width: 768px) */
+@media (min-width: 768px) {
+    header {
+        flex-direction: row;
     }
 
-    nav ul{
-        flex-direction:row;
+    nav ul {
+        flex-direction: row;
     }
 
-    .cards{
-        grid-template-columns:repeat(2,1fr);
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
     }
 
-    .hero h1{
-        font-size:2.5rem;
+    .hero h1 {
+        font-size: 2.5rem;
     }
 
-}
-
-/* ========================= */
-/* DESKTOP */
-/* ========================= */
-
-@media (min-width:1024px){
-
-    .cards{
-        grid-template-columns:repeat(3,1fr);
+    .menu-toggle {
+        display: none;
     }
 
-    .hero h1{
-        font-size:3rem;
+    .menu-btn {
+        display: none;
     }
 
-}
-
-.menu-toggle{
-    display:block;
-    background:none;
-    border:none;
-    color:white;
-    font-size:2rem;
-    cursor:pointer;
-}
-
-@media (min-width:768px){
-
-.menu-toggle{
-    display:none;
-}
-
-}
-
-.menu-btn{
-    background:#004960;
-    color:white;
-    border:none;
-    padding:10px 20px;
-    border-radius:8px;
-    cursor:pointer;
-    font-size:1rem;
-}
-
-/* móvil */
-
-#menu{
-    display:none;
-    width:100%;
-}
-
-#menu.active{
-    display:block;
-}
-
-#menu ul{
-    display:flex;
-    flex-direction:column;
-    list-style:none;
-    gap:1rem;
-    text-align:center;
-    padding:1rem 0;
-}
-
-@media (min-width:768px){
-
-    .menu-btn{
-        display:none;
+    #menu {
+        display: block !important;
+        width: auto;
     }
 
-    #menu{
-        display:block !important;
-        width:auto;
+    #menu ul {
+        flex-direction: row;
+        gap: 2rem;
+    }
+}
+
+/* Desktop Media Query (min-width: 1024px) */
+@media (min-width: 1024px) {
+    .cards {
+        grid-template-columns: repeat(3, 1fr);
     }
 
-    #menu ul{
-        flex-direction:row;
-        gap:2rem;
+    .hero h1 {
+        font-size: 3rem;
     }
+}
 
+/* ==========================================================================
+   ACCESIBILIDAD EXTRA: PREFERENCIAS DE MOVIMIENTO REDUCIDO
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .btn:hover, .card:hover {
+        transform: none !important; /* Desactiva saltos bruscos para usuarios sensibles */
+    }
 }
