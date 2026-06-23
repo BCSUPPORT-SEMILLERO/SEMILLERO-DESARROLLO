@@ -1,0 +1,25 @@
+TEMA 1 - WIREFRAME
+
+Caso de negocio: Panadería artesanal
+
+Persona objetivo:
+Adultos entre 25 y 55 años que buscan productos frescos y de calidad.
+
+Problema:
+Encontrar una panadería cercana con productos artesanales recién horneados.
+
+Secciones:
+1. Header
+2. Hero
+3. Beneficios
+4. Llamado a la acción
+5. Contacto
+6. Footer
+
+Acción principal:
+Realizar pedido.
+
+Heurísticas de Nielsen:
+- Consistencia y estándares.
+- Visibilidad del estado del sistema.
+- Diseño estético y minimalista.

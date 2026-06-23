@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Panadería artesanal con productos frescos todos los días"
+    />
+    <title>Panadería Doña Pepa BCS</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+   <header>
+
+    <div class="logo">
+        Panadería Doña Pepa BCS
+    </div>
+
+    <button id="menu-btn" class="menu-btn">
+        Menú
+    </button>
+
+    <nav id="menu">
+        <ul>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#beneficios">Beneficios</a></li>
+            <li><a href="#cta">Promoción</a></li>
+            <li><a href="#contacto">Contacto</a></li>
+        </ul>
+    </nav>
+
+</header>
+
+    <main  class="container">
+      <section id="inicio" class="hero">
+        <h1>Pan artesanal recién horneado todos los días</h1>
+        <p>
+          Disfruta productos frescos elaborados con ingredientes de calidad.
+        </p>
+        <a href="#contacto" class="btn">Realizar pedido</a>
+      </section>
+
+      <section id="beneficios">
+        <h2>Beneficios</h2>
+        <div class="cards">
+          <article class="card">
+            <h3>Ingredientes frescos</h3>
+            <p>Materias primas seleccionadas cuidadosamente.</p>
+          </article>
+          <article class="card">
+            <h3>Producción diaria</h3>
+            <p>Pan horneado cada mañana.</p>
+          </article>
+          <article class="card">
+            <h3>Atención personalizada</h3>
+            <p>Asesoría para encontrar el producto ideal.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="cta">
+        <h2>Promoción de la Semana</h2>
+        <p>Obtén descuentos en combos familiares.</p>
+        <a href="#contacto" class="btn">Solicitar información</a>
+      </section>
+
+      <section id="contacto">
+        <h2>Contáctanos</h2>
+        <form>
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required />
+
+          <label for="correo">Correo electrónico</label>
+          <input type="email" id="correo" name="correo" required />
+
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+
+          <button type="submit">Enviar</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2026 Panadería BCS - Todos los derechos reservados</p>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
